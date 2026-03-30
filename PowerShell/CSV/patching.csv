@@ -1,0 +1,51 @@
+VMID,VMName,OS,LastPatchDate,PatchesInstalled,PatchesFailed,PatchesPending,LastPatchStatus,DaysSinceLastPatch,IsCompliant
+VM001,web-prod-01,Windows Server 2022,2026-03-01,45,0,0,Success,13,1
+VM002,web-prod-02,Windows Server 2022,2026-03-01,45,0,0,Success,13,1
+VM003,app-prod-01,Windows Server 2019,2026-02-15,38,1,2,PartialSuccess,27,0
+VM004,app-prod-02,Windows Server 2019,2026-03-01,42,0,0,Success,13,1
+VM005,db-prod-01,Windows Server 2022,2026-03-01,45,0,0,Success,13,1
+VM006,db-prod-02,Windows Server 2022,2026-02-15,44,0,1,PartialSuccess,27,0
+VM007,file-prod-01,Windows Server 2019,2026-03-01,38,0,0,Success,13,1
+VM008,print-prod-01,Windows Server 2016,2026-01-15,22,2,5,Failed,58,0
+VM009,dc-prod-01,Windows Server 2022,2026-03-01,45,0,0,Success,13,1
+VM010,dc-prod-02,Windows Server 2022,2026-03-01,45,0,0,Success,13,1
+VM011,web-dev-01,Windows Server 2019,2026-02-01,35,0,3,PartialSuccess,41,0
+VM012,web-dev-02,Windows Server 2019,2026-03-01,38,0,0,Success,13,1
+VM013,app-dev-01,Windows Server 2022,2026-03-01,45,0,0,Success,13,1
+VM014,app-dev-02,Windows Server 2019,2026-02-15,36,1,2,PartialSuccess,27,0
+VM015,db-dev-01,Windows Server 2022,2026-03-01,45,0,0,Success,13,1
+VM016,sql-prod-01,Windows Server 2022,2026-03-01,45,0,0,Success,13,1
+VM017,sql-prod-02,Windows Server 2022,2026-03-01,45,0,0,Success,13,1
+VM018,mail-prod-01,Windows Server 2019,2026-02-15,38,0,1,PartialSuccess,27,0
+VM019,proxy-prod-01,Windows Server 2022,2026-03-01,45,0,0,Success,13,1
+VM020,backup-prod-01,Windows Server 2022,2026-03-01,45,0,0,Success,13,1
+VM021,mon-prod-01,Windows Server 2019,2026-02-01,35,2,3,Failed,41,0
+VM022,vpn-prod-01,Windows Server 2022,2026-03-01,45,0,0,Success,13,1
+VM023,rdp-prod-01,Windows Server 2022,2026-03-01,45,0,0,Success,13,1
+VM024,web-uat-01,Windows Server 2019,2026-02-15,36,0,2,PartialSuccess,27,0
+VM025,app-uat-01,Windows Server 2019,2026-02-15,36,0,1,PartialSuccess,27,0
+VM026,db-uat-01,Windows Server 2022,2026-03-01,45,0,0,Success,13,1
+VM027,linux-prod-01,Ubuntu 22.04,2026-03-01,52,0,0,Success,13,1
+VM028,linux-prod-02,Ubuntu 22.04,2026-03-01,48,0,0,Success,13,1
+VM029,linux-dev-01,Ubuntu 20.04,2026-02-01,42,0,3,PartialSuccess,41,0
+VM030,test-vm-01,Windows Server 2016,2025-12-01,18,3,8,Failed,103,0
+HV001,hv-web-prod-01,Windows Server 2022,2026-03-01,45,0,0,Success,13,1
+HV002,hv-web-prod-02,Windows Server 2022,2026-03-01,45,0,0,Success,13,1
+HV003,hv-app-prod-01,Windows Server 2019,2026-02-15,38,0,2,PartialSuccess,27,0
+HV004,hv-app-prod-02,Windows Server 2019,2026-03-01,42,0,0,Success,13,1
+HV005,hv-db-prod-01,Windows Server 2022,2026-03-01,45,0,0,Success,13,1
+HV006,hv-db-prod-02,Windows Server 2022,2026-02-15,44,1,1,PartialSuccess,27,0
+HV007,hv-file-prod-01,Windows Server 2019,2026-03-01,38,0,0,Success,13,1
+HV008,hv-dc-prod-01,Windows Server 2022,2026-03-01,45,0,0,Success,13,1
+HV009,hv-sql-prod-01,Windows Server 2022,2026-03-01,45,0,0,Success,13,1
+HV010,hv-sql-prod-02,Windows Server 2022,2026-03-01,45,0,0,Success,13,1
+HV011,hv-web-dev-01,Windows Server 2019,2026-02-01,35,0,3,PartialSuccess,41,0
+HV012,hv-web-dev-02,Windows Server 2019,2026-03-01,38,0,0,Success,13,1
+HV013,hv-app-dev-01,Windows Server 2022,2026-02-15,42,1,2,PartialSuccess,27,0
+HV014,hv-app-dev-02,Windows Server 2019,2026-03-01,38,0,0,Success,13,1
+HV015,hv-mail-prod-01,Windows Server 2019,2026-02-15,38,0,1,PartialSuccess,27,0
+HV016,hv-backup-prod-01,Windows Server 2022,2026-03-01,45,0,0,Success,13,1
+HV017,hv-mon-prod-01,Windows Server 2019,2026-02-01,35,2,4,Failed,41,0
+HV018,hv-rdp-prod-01,Windows Server 2022,2026-03-01,45,0,0,Success,13,1
+HV019,hv-linux-prod-01,Ubuntu 22.04,2026-03-01,48,0,0,Success,13,1
+HV020,hv-test-vm-01,Windows Server 2016,2025-11-01,15,4,10,Failed,133,0

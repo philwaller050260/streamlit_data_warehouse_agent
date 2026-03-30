@@ -1,0 +1,47 @@
+and = AND(
+    LEN(Geography[ContinentName]) = LEN(Geography[GeographyType]),
+    LEN(Geography[RegionCountryName]) = LEN(Geography[ContinentName])
+)
+
+
+
+concat = CONCATENATE(Geography[ContinentName],CONCATENATE(" ",Geography[GeographyType]))
+
+find = FIND("North",Geography[ContinentName],1,10)
+
+if = IF(LEN(Geography[RegionCountryName]) <= 4, "true", "false")
+
+if2 = IF(or(LEN(Geography[RegionCountryName]) = 4,LEN(Geography[RegionCountryName] )<4),1,2)
+
+length = LEN(Geography[ContinentName])
+
+not = not(OR(LEN(Geography[ContinentName]) > LEN(Geography[RegionCountryName]),LEN(Geography[ContinentName]) == len(Geography[GeographyType])))
+
+or = OR(LEN(Geography[ContinentName]) > LEN(Geography[RegionCountryName]),LEN(Geography[ContinentName]) == len(Geography[GeographyType]))
+
+switch = SWITCH(Geography[ContinentName],"North America","cunts","Europe","wankers","Asia","Grown ups","twats")
+
+format = FORMAT(Sales[TotalCost],"$#.0.00")
+
+format_date = FORMAT(DATE(2026,3,20),"dd-mm-yyyy")
+
+left_text = LEFT("Philip",4)
+
+or = OR(Sales[val1] > Sales[val2],1<>1)
+
+substitute = SUBSTITUTE("Fhil","F","P")
+
+test_dax = Sales[TotalCost] * 2
+
+trim = TRIM("     PHILIP      ")
+
+val1 = VALUE("232")
+
+val2 = VALUE("1")
+
+Value_string_to_Int = VALUE("0.5") * Sales[TotalCost]
+
+Start of Month = STARTOFMONTH('Calendar'[DateKey]) 
+
+related = RELATED(Promotion[PromotionName]) # you need to be in one table and use this to get the value from another 
+

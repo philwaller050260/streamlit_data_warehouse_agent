@@ -1,0 +1,21 @@
+VMID,VMName,Host,Datacentre,OS,CPUCount,RAMAssignedGB,RAMUsedGB,CPUUsagePct,PoweredOn,ReplicationEnabled,CheckpointCount,DiskAllocatedGB,DiskUsedGB,AVProduct
+HV001,hv-web-prod-01,hyperv-host-01,DC-Birmingham,Windows Server 2022,4,8,5.8,42,1,1,0,100,68,McAfee
+HV002,hv-web-prod-02,hyperv-host-01,DC-Birmingham,Windows Server 2022,4,8,5.2,38,1,1,0,100,72,McAfee
+HV003,hv-app-prod-01,hyperv-host-02,DC-Birmingham,Windows Server 2019,8,16,11.4,58,1,1,0,200,142,McAfee
+HV004,hv-app-prod-02,hyperv-host-02,DC-Birmingham,Windows Server 2019,8,16,10.8,52,1,0,1,200,128,McAfee
+HV005,hv-db-prod-01,hyperv-host-03,DC-Birmingham,Windows Server 2022,16,32,26.4,68,1,1,0,500,380,McAfee
+HV006,hv-db-prod-02,hyperv-host-03,DC-Birmingham,Windows Server 2022,16,32,24.8,62,1,1,0,500,410,McAfee
+HV007,hv-file-prod-01,hyperv-host-04,DC-Birmingham,Windows Server 2019,4,8,3.8,20,1,1,0,1000,720,McAfee
+HV008,hv-dc-prod-01,hyperv-host-04,DC-Birmingham,Windows Server 2022,4,8,5.2,29,1,1,0,80,44,McAfee
+HV009,hv-sql-prod-01,hyperv-host-01,DC-Birmingham,Windows Server 2022,16,64,50.2,72,1,1,0,1000,760,McAfee
+HV010,hv-sql-prod-02,hyperv-host-02,DC-Birmingham,Windows Server 2022,16,64,46.8,65,1,1,0,1000,800,McAfee
+HV011,hv-web-dev-01,hyperv-host-03,DC-Birmingham,Windows Server 2019,2,4,2.1,22,1,0,2,50,28,McAfee
+HV012,hv-web-dev-02,hyperv-host-03,DC-Birmingham,Windows Server 2019,2,4,1.8,18,1,0,1,50,24,McAfee
+HV013,hv-app-dev-01,hyperv-host-04,DC-Birmingham,Windows Server 2022,4,8,4.2,38,1,0,3,100,62,McAfee
+HV014,hv-app-dev-02,hyperv-host-04,DC-Birmingham,Windows Server 2019,4,8,3.8,32,1,0,2,100,55,McAfee
+HV015,hv-mail-prod-01,hyperv-host-01,DC-Birmingham,Windows Server 2019,8,32,22.8,52,1,1,0,500,360,McAfee
+HV016,hv-backup-prod-01,hyperv-host-02,DC-Birmingham,Windows Server 2022,4,16,8.2,32,1,1,0,2000,1380,McAfee
+HV017,hv-mon-prod-01,hyperv-host-03,DC-Birmingham,Windows Server 2019,4,8,5.2,38,1,0,0,100,68,McAfee
+HV018,hv-rdp-prod-01,hyperv-host-04,DC-Birmingham,Windows Server 2022,8,16,10.8,48,1,1,1,200,138,McAfee
+HV019,hv-linux-prod-01,hyperv-host-01,DC-Birmingham,Ubuntu 22.04,4,8,4.8,32,1,1,0,100,58,McAfee
+HV020,hv-test-vm-01,hyperv-host-02,DC-Birmingham,Windows Server 2016,2,4,1.1,10,0,0,4,50,16,McAfee

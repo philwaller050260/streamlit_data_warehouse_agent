@@ -1,0 +1,4 @@
+1. highlight Key entiuties - explain the rationale
+2. highlight relationships - explain the rationale
+3. draw the conceptual model - explain the model rationale
+4. Draw the logical model - explain the model rationale

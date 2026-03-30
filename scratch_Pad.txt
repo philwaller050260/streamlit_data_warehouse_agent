@@ -1,0 +1,117 @@
+📊 Star Schema Generator
+Upload a flat file → get fact & dimension table SQL scripts
+
+
+⚙️ Schema Generator
+
+
+✅ Schema Validator
+
+
+🔍 DB Design Assistant
+
+
+🚀 Deploy Schema
+
+Upload your flat file
+
+sales_data.csv
+Drag and drop file here
+Limit 200MB per file • CSV, XLSX, JSON
+sales_data.csv
+3.8KB
+Loaded 15 rows and 30 columns
+
+
+Generated SQL
+```sql
+-- Dim_Date: Represents a date dimension with various attributes of a date
+CREATE TABLE Dim_Date (
+    DateKey INT PRIMARY KEY,
+    FullDate DATE NOT NULL,
+    DayName VARCHAR(10) NOT NULL,
+    DayOfWeek INT NOT NULL,
+    DayOfMonth INT NOT NULL,
+    WeekOfYear INT NOT NULL,
+    MonthNumber INT NOT NULL,
+    MonthName VARCHAR(10) NOT NULL,
+    Quarter INT NOT NULL,
+    Year INT NOT NULL,
+    IsWeekend INT NOT NULL
+);
+
+-- Dim_Customer: Represents customer details
+CREATE TABLE Dim_Customer (
+    CustomerKey INT IDENTITY(1,1) PRIMARY KEY,
+    CustomerID VARCHAR(10) NOT NULL,
+    CustomerName VARCHAR(100) NOT NULL,
+    CustomerEmail VARCHAR(100) NOT NULL,
+    CustomerCity VARCHAR(50) NOT NULL,
+    CustomerCountry VARCHAR(50) NOT NULL,
+    CustomerSegment VARCHAR(50) NOT NULL
+);
+
+-- Dim_Product: Represents product details
+CREATE TABLE Dim_Product (
+    ProductKey INT IDENTITY(1,1) PRIMARY KEY,
+    ProductID VARCHAR(10) NOT NULL,
+    ProductName VARCHAR(100) NOT NULL,
+    ProductCategory VARCHAR(50) NOT NULL,
+    ProductSubcategory VARCHAR(50) NOT NULL,
+    ProductBrand VARCHAR(50) NOT NULL,
+    UnitPrice DECIMAL(10,2) NOT NULL
+);
+
+-- Dim_Salesperson: Represents details about salespersons
+CREATE TABLE Dim_Salesperson (
+    SalespersonKey INT IDENTITY(1,1) PRIMARY KEY,
+    SalespersonID VARCHAR(10) NOT NULL,
+    SalespersonName VARCHAR(100) NOT NULL,
+    SalespersonRegion VARCHAR(50) NOT NULL,
+    SalespersonTeam VARCHAR(50) NOT NULL
+);
+
+-- Dim_Warehouse: Represents details about warehouses
+CREATE TABLE Dim_Warehouse (
+    WarehouseKey INT IDENTITY(1,1) PRIMARY KEY,
+    WarehouseID VARCHAR(10) NOT NULL,
+    WarehouseLocation VARCHAR(100) NOT NULL
+);
+
+-- Dim_OrderStatus: Represents the various order statuses
+CREATE TABLE Dim_OrderStatus (
+    OrderStatusKey INT IDENTITY(1,1) PRIMARY KEY,
+    OrderStatus VARCHAR(20) NOT NULL
+);
+
+-- Dim_PaymentMethod: Represents the payment methods
+CREATE TABLE Dim_PaymentMethod (
+    PaymentMethodKey INT IDENTITY(1,1) PRIMARY KEY,
+    PaymentMethod VARCHAR(50) NOT NULL
+);
+
+-- Dim_ReturnReason: Represents reasons for returns
+CREATE TABLE Dim_ReturnReason (
+    ReturnReasonKey INT IDENTITY(1,1) PRIMARY KEY,
+    ReturnReason VARCHAR(50) NOT NULL
+);
+
+-- Fact_Order: Represents the order facts with measures and foreign keys
+CREATE TABLE Fact_Order (
+    OrderID INT PRIMARY KEY,
+    DateKey INT FOREIGN KEY REFERENCES Dim_Date(DateKey),
+    CustomerKey INT FOREIGN KEY REFERENCES Dim_Customer(CustomerKey),
+    ProductKey INT FOREIGN KEY REFERENCES Dim_Product(ProductKey),
+    SalespersonKey INT FOREIGN KEY REFERENCES Dim_Salesperson(SalespersonKey),
+    WarehouseKey INT FOREIGN KEY REFERENCES Dim_Warehouse(WarehouseKey),
+    OrderStatusKey INT FOREIGN KEY REFERENCES Dim_OrderStatus(OrderStatusKey),
+    PaymentMethodKey INT FOREIGN KEY REFERENCES Dim_PaymentMethod(PaymentMethodKey),
+    Quantity INT NOT NULL,
+    DiscountPercent INT NOT NULL,
+    TotalAmount DECIMAL(10,2) NOT NULL,
+    ShippingCost DECIMAL(10,2) NOT NULL,
+    DeliveryDays INT NOT NULL,
+    IsReturned INT NOT NULL,
+    ReturnReasonKey INT FOREIGN KEY REFERENCES Dim_ReturnReason(ReturnReasonKey)
+);
+```

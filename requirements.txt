@@ -1,0 +1,8 @@
+streamlit
+qdrant-client
+openai
+requests
+pandas
+pymssql
+openpyxl
+pdfplumber 

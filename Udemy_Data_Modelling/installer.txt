@@ -1,0 +1,10 @@
+docker pull apache/hop-web:latest
+
+docker run -d --name hop-web -p 8181:8181 apache/hop-web:latest
+
+docker run -d --name apache-hop-web -p 8181:8181 -v C:\Projects\Database_Agent\Apache_hop\Project_files:/files/projects   apache/hop-web:latest
+
+
+docker stop apache-hop-web
+docker rm apache-hop-web
+docker run -d --name apache-hop-web -p 8181:8080 -v C:\Projects\Database_Agent\Udemy_Data_Modelling\Project_files:/files/projects apache/hop-web:latest

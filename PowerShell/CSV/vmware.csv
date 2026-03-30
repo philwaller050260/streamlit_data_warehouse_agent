@@ -1,0 +1,31 @@
+VMID,VMName,Cluster,Datacentre,Host,OS,CPUCount,RAMAssignedGB,RAMUsedGB,CPUUsagePct,PoweredOn,ToolsInstalled,SnapshotCount,DiskAllocatedGB,DiskUsedGB,AVProduct
+VM001,web-prod-01,Cluster-A,DC-London,esxi-host-01,Windows Server 2022,4,8,6.2,45,1,1,0,100,67,BitDefender
+VM002,web-prod-02,Cluster-A,DC-London,esxi-host-01,Windows Server 2022,4,8,5.8,38,1,1,0,100,71,BitDefender
+VM003,app-prod-01,Cluster-A,DC-London,esxi-host-02,Windows Server 2019,8,20,12.4,62,1,1,1,200,145,BitDefender
+VM004,app-prod-02,Cluster-A,DC-London,esxi-host-02,Windows Server 2019,8,16,11.8,58,1,1,0,200,132,BitDefender
+VM005,db-prod-01,Cluster-B,DC-London,esxi-host-03,Windows Server 2022,16,32,28.6,71,1,1,0,500,380,BitDefender
+VM006,db-prod-02,Cluster-B,DC-London,esxi-host-03,Windows Server 2022,16,32,27.2,68,1,1,0,500,420,BitDefender
+VM007,file-prod-01,Cluster-B,DC-London,esxi-host-04,Windows Server 2019,4,8,4.1,22,1,1,2,1000,750,BitDefender
+VM008,print-prod-01,Cluster-B,DC-London,esxi-host-04,Windows Server 2016,2,4,2.8,18,1,1,0,50,32,BitDefender
+VM009,dc-prod-01,Cluster-C,DC-Manchester,esxi-host-05,Windows Server 2022,4,8,5.5,31,1,1,0,80,45,BitDefender
+VM010,dc-prod-02,Cluster-C,DC-Manchester,esxi-host-05,Windows Server 2022,4,8,5.1,28,1,1,0,80,43,BitDefender
+VM011,web-dev-01,Cluster-C,DC-Manchester,esxi-host-06,Windows Server 2019,2,4,2.2,25,1,1,3,50,28,BitDefender
+VM012,web-dev-02,Cluster-C,DC-Manchester,esxi-host-06,Windows Server 2019,2,4,1.8,18,1,1,1,50,22,BitDefender
+VM013,app-dev-01,Cluster-D,DC-Manchester,esxi-host-07,Windows Server 2022,4,8,4.5,42,1,1,2,100,65,BitDefender
+VM014,app-dev-02,Cluster-D,DC-Manchester,esxi-host-07,Windows Server 2019,4,8,3.9,35,1,1,0,100,58,BitDefender
+VM015,db-dev-01,Cluster-D,DC-Manchester,esxi-host-08,Windows Server 2022,8,16,10.2,48,1,1,1,200,145,BitDefender
+VM016,sql-prod-01,Cluster-A,DC-London,esxi-host-01,Windows Server 2022,16,64,52.8,74,1,1,0,1000,780,BitDefender
+VM017,sql-prod-02,Cluster-A,DC-London,esxi-host-02,Windows Server 2022,16,64,48.2,68,1,1,0,1000,820,BitDefender
+VM018,mail-prod-01,Cluster-B,DC-London,esxi-host-03,Windows Server 2019,8,32,24.6,55,1,1,0,500,380,BitDefender
+VM019,proxy-prod-01,Cluster-B,DC-London,esxi-host-04,Windows Server 2022,4,8,3.2,28,1,1,0,80,42,BitDefender
+VM020,backup-prod-01,Cluster-C,DC-Manchester,esxi-host-05,Windows Server 2022,4,16,8.4,35,1,1,0,2000,1450,BitDefender
+VM021,mon-prod-01,Cluster-C,DC-Manchester,esxi-host-06,Windows Server 2019,4,8,5.6,41,1,1,0,100,72,BitDefender
+VM022,vpn-prod-01,Cluster-D,DC-Manchester,esxi-host-07,Windows Server 2022,2,4,2.1,22,1,1,0,50,28,BitDefender
+VM023,rdp-prod-01,Cluster-D,DC-Manchester,esxi-host-08,Windows Server 2022,8,16,11.2,52,1,1,1,200,145,BitDefender
+VM024,web-uat-01,Cluster-A,DC-London,esxi-host-01,Windows Server 2019,2,4,2.8,31,1,1,2,50,32,BitDefender
+VM025,app-uat-01,Cluster-A,DC-London,esxi-host-02,Windows Server 2019,4,8,4.2,38,1,1,1,100,68,BitDefender
+VM026,db-uat-01,Cluster-B,DC-London,esxi-host-03,Windows Server 2022,8,16,9.8,45,1,1,0,200,132,BitDefender
+VM027,linux-prod-01,Cluster-B,DC-London,esxi-host-04,Ubuntu 22.04,4,8,5.2,38,1,1,0,100,62,BitDefender
+VM028,linux-prod-02,Cluster-C,DC-Manchester,esxi-host-05,Ubuntu 22.04,4,8,4.8,35,1,1,0,100,58,BitDefender
+VM029,linux-dev-01,Cluster-C,DC-Manchester,esxi-host-06,Ubuntu 20.04,2,4,2.2,22,1,1,3,50,28,BitDefender
+VM030,test-vm-01,Cluster-D,DC-Manchester,esxi-host-07,Windows Server 2016,2,4,1.2,12,0,0,5,50,18,BitDefender
