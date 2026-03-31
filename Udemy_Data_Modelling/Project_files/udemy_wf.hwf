@@ -28,69 +28,39 @@
       <weekDay>1</weekDay>
       <parallel>N</parallel>
       <xloc>16</xloc>
-      <yloc>208</yloc>
+      <yloc>272</yloc>
       <attributes_hac/>
     </action>
     <action>
-      <name>Drop_schema</name>
+      <name>Create schema source</name>
       <description/>
       <type>SQL</type>
       <attributes/>
       <connection>az-sql-server</connection>
       <sendOneStatement>N</sendOneStatement>
-      <sql>DROP SCHEMA easyrental_source;
-DROP SCHEMA easyrental_dwh;
-DROP SCHEMA easyrental_stg;
-</sql>
+      <sql>CREATE SCHEMA easyrental_source;</sql>
       <sqlfilename/>
       <sqlfromfile>N</sqlfromfile>
       <useVariableSubstitution>N</useVariableSubstitution>
       <parallel>N</parallel>
-      <xloc>192</xloc>
-      <yloc>96</yloc>
+      <xloc>448</xloc>
+      <yloc>368</yloc>
       <attributes_hac/>
     </action>
     <action>
-      <name>Dummy</name>
-      <description/>
-      <type>DUMMY</type>
-      <attributes/>
-      <parallel>N</parallel>
-      <xloc>768</xloc>
-      <yloc>208</yloc>
-      <attributes_hac/>
-    </action>
-    <action>
-      <name>Create_schema</name>
-      <description/>
-      <type>SQL</type>
-      <attributes/>
-      <connection>az-sql-server</connection>
-      <sendOneStatement>N</sendOneStatement>
-      <sql>CREATE SCHEMA easyrental_stg;
-CREATE SCHEMA easyrental_source;
-CREATE SCHEMA easyrental_dwh;</sql>
-      <sqlfromfile>N</sqlfromfile>
-      <useVariableSubstitution>N</useVariableSubstitution>
-      <parallel>N</parallel>
-      <xloc>320</xloc>
-      <yloc>96</yloc>
-      <attributes_hac/>
-    </action>
-    <action>
-      <name>Create easyrental_source tables</name>
+      <name>Create easyrental source tables</name>
       <description/>
       <type>SQL</type>
       <attributes/>
       <connection>az-sql-server</connection>
       <sendOneStatement>N</sendOneStatement>
       <sql/>
-      <sqlfilename>/files/projects/Create_tables/easyrental_source.sql</sqlfilename>
+      <sqlfilename>/files/projects/Create_tables/create_easyrental_source.sql</sqlfilename>
       <sqlfromfile>Y</sqlfromfile>
       <useVariableSubstitution>N</useVariableSubstitution>
       <parallel>N</parallel>
-      <xloc>432</xloc>
-      <yloc>208</yloc>
+      <xloc>624</xloc>
+      <yloc>368</yloc>
       <attributes_hac/>
     </action>
     <action>
@@ -105,8 +75,6 @@ CREATE SCHEMA easyrental_dwh;</sql>
       <create_parent_folder>N</create_parent_folder>
       <exec_per_row>N</exec_per_row>
       <filename>/files/projects/pipeline.hpl</filename>
-      <logext/>
-      <logfile/>
       <loglevel>Basic</loglevel>
       <parameters>
         <pass_all_parameters>Y</pass_all_parameters>
@@ -117,12 +85,12 @@ CREATE SCHEMA easyrental_dwh;</sql>
       <set_logfile>N</set_logfile>
       <wait_until_finished>Y</wait_until_finished>
       <parallel>N</parallel>
-      <xloc>608</xloc>
-      <yloc>208</yloc>
+      <xloc>800</xloc>
+      <yloc>368</yloc>
       <attributes_hac/>
     </action>
     <action>
-      <name>SQL</name>
+      <name>Drop source tables</name>
       <description/>
       <type>SQL</type>
       <attributes/>
@@ -138,43 +106,255 @@ DROP TABLE IF EXISTS [easyrental_source].[reservations];</sql>
       <sqlfromfile>N</sqlfromfile>
       <useVariableSubstitution>N</useVariableSubstitution>
       <parallel>N</parallel>
-      <xloc>80</xloc>
-      <yloc>128</yloc>
+      <xloc>160</xloc>
+      <yloc>368</yloc>
+      <attributes_hac/>
+    </action>
+    <action>
+      <name>Drop stg tables</name>
+      <description/>
+      <type>SQL</type>
+      <attributes/>
+      <connection>az-sql-server</connection>
+      <sendOneStatement>N</sendOneStatement>
+      <sql>DROP TABLE IF EXISTS [easyrental_stg].[branches];
+DROP TABLE IF EXISTS [easyrental_stg].[cars];
+DROP TABLE IF EXISTS [easyrental_stg].[car_categories];
+DROP TABLE IF EXISTS [easyrental_stg].[customers];
+DROP TABLE IF EXISTS [easyrental_stg].[payments];
+DROP TABLE IF EXISTS [easyrental_stg].[reservations];</sql>
+      <sqlfilename/>
+      <sqlfromfile>N</sqlfromfile>
+      <useVariableSubstitution>N</useVariableSubstitution>
+      <parallel>N</parallel>
+      <xloc>176</xloc>
+      <yloc>160</yloc>
+      <attributes_hac/>
+    </action>
+    <action>
+      <name>Drop schema stg</name>
+      <description/>
+      <type>SQL</type>
+      <attributes/>
+      <connection>az-sql-server</connection>
+      <sendOneStatement>N</sendOneStatement>
+      <sql>DROP SCHEMA easyrental_stg;
+</sql>
+      <sqlfilename/>
+      <sqlfromfile>N</sqlfromfile>
+      <useVariableSubstitution>N</useVariableSubstitution>
+      <parallel>N</parallel>
+      <xloc>320</xloc>
+      <yloc>160</yloc>
+      <attributes_hac/>
+    </action>
+    <action>
+      <name>Create schema stg</name>
+      <description/>
+      <type>SQL</type>
+      <attributes/>
+      <connection>az-sql-server</connection>
+      <sendOneStatement>N</sendOneStatement>
+      <sql>CREATE SCHEMA easyrental_stg;</sql>
+      <sqlfilename/>
+      <sqlfromfile>N</sqlfromfile>
+      <useVariableSubstitution>N</useVariableSubstitution>
+      <parallel>N</parallel>
+      <xloc>464</xloc>
+      <yloc>160</yloc>
+      <attributes_hac/>
+    </action>
+    <action>
+      <name>Create easyrental stg tables</name>
+      <description/>
+      <type>SQL</type>
+      <attributes/>
+      <connection>az-sql-server</connection>
+      <sendOneStatement>N</sendOneStatement>
+      <sql/>
+      <sqlfilename>/files/projects/Create_tables/create_easyrental_stg.sql</sqlfilename>
+      <sqlfromfile>Y</sqlfromfile>
+      <useVariableSubstitution>N</useVariableSubstitution>
+      <parallel>N</parallel>
+      <xloc>608</xloc>
+      <yloc>160</yloc>
+      <attributes_hac/>
+    </action>
+    <action>
+      <name>Drop schema source</name>
+      <description/>
+      <type>SQL</type>
+      <attributes/>
+      <connection>az-sql-server</connection>
+      <sendOneStatement>N</sendOneStatement>
+      <sql>DROP SCHEMA IF EXISTS easyrental_source;
+</sql>
+      <sqlfilename/>
+      <sqlfromfile>N</sqlfromfile>
+      <useVariableSubstitution>N</useVariableSubstitution>
+      <parallel>N</parallel>
+      <xloc>320</xloc>
+      <yloc>368</yloc>
+      <attributes_hac/>
+    </action>
+    <action>
+      <name>Drop dwh tables</name>
+      <description/>
+      <type>SQL</type>
+      <attributes/>
+      <connection>az-sql-server</connection>
+      <sendOneStatement>N</sendOneStatement>
+      <sql>DROP TABLE IF EXISTS [easyrental_dwh].[fact_reservations];
+DROP TABLE IF EXISTS [easyrental_dwh].[dim_customers];
+DROP TABLE IF EXISTS [easyrental_dwh].[dim_cars];
+DROP TABLE IF EXISTS [easyrental_dwh].[dim_branches];
+DROP TABLE IF EXISTS [easyrental_dwh].[dim_dates];</sql>
+      <sqlfilename/>
+      <sqlfromfile>N</sqlfromfile>
+      <useVariableSubstitution>N</useVariableSubstitution>
+      <parallel>N</parallel>
+      <xloc>176</xloc>
+      <yloc>272</yloc>
+      <attributes_hac/>
+    </action>
+    <action>
+      <name>Drop schema dwh</name>
+      <description/>
+      <type>SQL</type>
+      <attributes/>
+      <connection>az-sql-server</connection>
+      <sendOneStatement>N</sendOneStatement>
+      <sql>DROP SCHEMA IF EXISTS easyrental_dwh;
+</sql>
+      <sqlfilename/>
+      <sqlfromfile>N</sqlfromfile>
+      <useVariableSubstitution>N</useVariableSubstitution>
+      <parallel>N</parallel>
+      <xloc>320</xloc>
+      <yloc>272</yloc>
+      <attributes_hac/>
+    </action>
+    <action>
+      <name>Create schema dwh</name>
+      <description/>
+      <type>SQL</type>
+      <attributes/>
+      <connection>az-sql-server</connection>
+      <sendOneStatement>N</sendOneStatement>
+      <sql>CREATE SCHEMA easyrental_dwh;</sql>
+      <sqlfilename/>
+      <sqlfromfile>N</sqlfromfile>
+      <useVariableSubstitution>N</useVariableSubstitution>
+      <parallel>N</parallel>
+      <xloc>464</xloc>
+      <yloc>272</yloc>
+      <attributes_hac/>
+    </action>
+    <action>
+      <name>Create easyrental dwh tables</name>
+      <description/>
+      <type>SQL</type>
+      <attributes/>
+      <connection>az-sql-server</connection>
+      <sendOneStatement>N</sendOneStatement>
+      <sql/>
+      <sqlfilename>/files/projects/Create_tables/create_easyrental_dim_fact_table.sql</sqlfilename>
+      <sqlfromfile>Y</sqlfromfile>
+      <useVariableSubstitution>N</useVariableSubstitution>
+      <parallel>N</parallel>
+      <xloc>608</xloc>
+      <yloc>272</yloc>
       <attributes_hac/>
     </action>
   </actions>
   <hops>
     <hop>
-      <from>Drop_schema</from>
-      <to>Create_schema</to>
-      <enabled>Y</enabled>
-      <evaluation>Y</evaluation>
-      <unconditional>N</unconditional>
-    </hop>
-    <hop>
-      <from>Create_schema</from>
-      <to>Create easyrental_source tables</to>
+      <from>Create schema source</from>
+      <to>Create easyrental source tables</to>
       <enabled>Y</enabled>
       <evaluation>Y</evaluation>
       <unconditional>N</unconditional>
     </hop>
     <hop>
       <from>Start</from>
-      <to>SQL</to>
+      <to>Drop source tables</to>
       <enabled>Y</enabled>
       <evaluation>Y</evaluation>
       <unconditional>Y</unconditional>
     </hop>
     <hop>
-      <from>SQL</from>
-      <to>Drop_schema</to>
+      <from>Create easyrental source tables</from>
+      <to>Write csv data to tables</to>
       <enabled>Y</enabled>
       <evaluation>Y</evaluation>
       <unconditional>N</unconditional>
     </hop>
     <hop>
-      <from>Create easyrental_source tables</from>
-      <to>Write csv data to tables</to>
+      <from>Start</from>
+      <to>Drop stg tables</to>
+      <enabled>Y</enabled>
+      <evaluation>Y</evaluation>
+      <unconditional>Y</unconditional>
+    </hop>
+    <hop>
+      <from>Drop stg tables</from>
+      <to>Drop schema stg</to>
+      <enabled>Y</enabled>
+      <evaluation>Y</evaluation>
+      <unconditional>N</unconditional>
+    </hop>
+    <hop>
+      <from>Drop schema stg</from>
+      <to>Create schema stg</to>
+      <enabled>Y</enabled>
+      <evaluation>Y</evaluation>
+      <unconditional>N</unconditional>
+    </hop>
+    <hop>
+      <from>Create schema stg</from>
+      <to>Create easyrental stg tables</to>
+      <enabled>Y</enabled>
+      <evaluation>Y</evaluation>
+      <unconditional>N</unconditional>
+    </hop>
+    <hop>
+      <from>Drop source tables</from>
+      <to>Drop schema source</to>
+      <enabled>Y</enabled>
+      <evaluation>Y</evaluation>
+      <unconditional>N</unconditional>
+    </hop>
+    <hop>
+      <from>Drop schema source</from>
+      <to>Create schema source</to>
+      <enabled>Y</enabled>
+      <evaluation>Y</evaluation>
+      <unconditional>N</unconditional>
+    </hop>
+    <hop>
+      <from>Start</from>
+      <to>Drop dwh tables</to>
+      <enabled>Y</enabled>
+      <evaluation>Y</evaluation>
+      <unconditional>Y</unconditional>
+    </hop>
+    <hop>
+      <from>Drop dwh tables</from>
+      <to>Drop schema dwh</to>
+      <enabled>Y</enabled>
+      <evaluation>Y</evaluation>
+      <unconditional>N</unconditional>
+    </hop>
+    <hop>
+      <from>Drop schema dwh</from>
+      <to>Create schema dwh</to>
+      <enabled>Y</enabled>
+      <evaluation>Y</evaluation>
+      <unconditional>N</unconditional>
+    </hop>
+    <hop>
+      <from>Create schema dwh</from>
+      <to>Create easyrental dwh tables</to>
       <enabled>Y</enabled>
       <evaluation>Y</evaluation>
       <unconditional>N</unconditional>
