@@ -7,4 +7,4 @@ docker run -d --name apache-hop-web -p 8181:8181 -v C:\Projects\Database_Agent\A
 
 docker stop apache-hop-web
 docker rm apache-hop-web
-docker run -d --name apache-hop-web -p 8181:8080 -v C:\Projects\Database_Agent\Udemy_Data_Modelling\Project_files:/files/projects apache/hop-web:latest
+ docker run -d --name apache-hop-web -p 8181:8080 -v C:\Projects\streamlit_data_warehouse_agent\Udemy_Data_Modelling\Project_files:/files/projects apache/hop-web:latest

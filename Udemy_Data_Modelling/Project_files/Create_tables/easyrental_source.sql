@@ -1,43 +1,45 @@
-CREATE TABLE [customers] (
+--- easyrental schema ---
+
+CREATE TABLE [easyrental_source].[customers] (
   [id] int PRIMARY KEY IDENTITY(1, 1),
   [name] nvarchar(255),
   [email] nvarchar(255),
   [date_of_birth] date,
   [phone] nvarchar(255),
-  [diver_license_number] nvarchar(255)
+  [driver_license_number] nvarchar(255)
 )
 
 
-CREATE TABLE [reservations] (
+CREATE TABLE [easyrental_source].[reservations] (
   [id] int PRIMARY KEY IDENTITY(1, 1),
   [customer_id] int,
   [car_id] int,
   [pickup_branch_id] int,
   [return_branch_id] int,
-  [pickup_date] date,
-  [return_date] date,
+  [start_date] date,
+  [end_date] date,
   [booking_date] date
 )
 
 
-CREATE TABLE [cars] (
+CREATE TABLE [easyrental_source].[cars] (
   [id] int PRIMARY KEY IDENTITY(1, 1),
   [license_plate] nvarchar(255),
   [model] nvarchar(255),
   [year] int,
   [category_id] int,
-  [branch_id] int
+  [current_branch_id] int
 )
 
 
-CREATE TABLE [car_categories] (
+CREATE TABLE [easyrental_source].[car_categories] (
   [id] int PRIMARY KEY IDENTITY(1, 1),
   [name] nvarchar(255),
   [daily_rate] decimal
 )
 
 
-CREATE TABLE [branches] (
+CREATE TABLE [easyrental_source].[branches] (
   [id] int PRIMARY KEY IDENTITY(1, 1),
   [name] nvarchar(255),
   [city] nvarchar(255),
@@ -45,11 +47,11 @@ CREATE TABLE [branches] (
 )
 
 
-CREATE TABLE [payments] (
+CREATE TABLE [easyrental_source].[payments] (
   [id] int PRIMARY KEY IDENTITY(1, 1),
   [reservation_id] int,
   [amount] decimal,
-  [payment_type] nvarchar(255),
+  [payment_method] nvarchar(255),
   [payment_date] date
 )
 
