@@ -27,8 +27,8 @@
       <schedulerType>0</schedulerType>
       <weekDay>1</weekDay>
       <parallel>N</parallel>
-      <xloc>16</xloc>
-      <yloc>272</yloc>
+      <xloc>224</xloc>
+      <yloc>352</yloc>
       <attributes_hac/>
     </action>
     <action>
@@ -39,12 +39,11 @@
       <connection>az-sql-server</connection>
       <sendOneStatement>N</sendOneStatement>
       <sql>CREATE SCHEMA easyrental_source;</sql>
-      <sqlfilename/>
       <sqlfromfile>N</sqlfromfile>
       <useVariableSubstitution>N</useVariableSubstitution>
       <parallel>N</parallel>
-      <xloc>448</xloc>
-      <yloc>368</yloc>
+      <xloc>656</xloc>
+      <yloc>448</yloc>
       <attributes_hac/>
     </action>
     <action>
@@ -54,13 +53,12 @@
       <attributes/>
       <connection>az-sql-server</connection>
       <sendOneStatement>N</sendOneStatement>
-      <sql/>
       <sqlfilename>/files/projects/Create_tables/create_easyrental_source.sql</sqlfilename>
       <sqlfromfile>Y</sqlfromfile>
       <useVariableSubstitution>N</useVariableSubstitution>
       <parallel>N</parallel>
-      <xloc>624</xloc>
-      <yloc>368</yloc>
+      <xloc>832</xloc>
+      <yloc>448</yloc>
       <attributes_hac/>
     </action>
     <action>
@@ -85,8 +83,8 @@
       <set_logfile>N</set_logfile>
       <wait_until_finished>Y</wait_until_finished>
       <parallel>N</parallel>
-      <xloc>800</xloc>
-      <yloc>368</yloc>
+      <xloc>1008</xloc>
+      <yloc>448</yloc>
       <attributes_hac/>
     </action>
     <action>
@@ -102,12 +100,11 @@ DROP TABLE IF EXISTS [easyrental_source].[car_categories];
 DROP TABLE IF EXISTS [easyrental_source].[customers];
 DROP TABLE IF EXISTS [easyrental_source].[payments];
 DROP TABLE IF EXISTS [easyrental_source].[reservations];</sql>
-      <sqlfilename/>
       <sqlfromfile>N</sqlfromfile>
       <useVariableSubstitution>N</useVariableSubstitution>
       <parallel>N</parallel>
-      <xloc>160</xloc>
-      <yloc>368</yloc>
+      <xloc>368</xloc>
+      <yloc>448</yloc>
       <attributes_hac/>
     </action>
     <action>
@@ -123,12 +120,11 @@ DROP TABLE IF EXISTS [easyrental_stg].[car_categories];
 DROP TABLE IF EXISTS [easyrental_stg].[customers];
 DROP TABLE IF EXISTS [easyrental_stg].[payments];
 DROP TABLE IF EXISTS [easyrental_stg].[reservations];</sql>
-      <sqlfilename/>
       <sqlfromfile>N</sqlfromfile>
       <useVariableSubstitution>N</useVariableSubstitution>
       <parallel>N</parallel>
-      <xloc>176</xloc>
-      <yloc>160</yloc>
+      <xloc>384</xloc>
+      <yloc>240</yloc>
       <attributes_hac/>
     </action>
     <action>
@@ -140,12 +136,11 @@ DROP TABLE IF EXISTS [easyrental_stg].[reservations];</sql>
       <sendOneStatement>N</sendOneStatement>
       <sql>DROP SCHEMA easyrental_stg;
 </sql>
-      <sqlfilename/>
       <sqlfromfile>N</sqlfromfile>
       <useVariableSubstitution>N</useVariableSubstitution>
       <parallel>N</parallel>
-      <xloc>320</xloc>
-      <yloc>160</yloc>
+      <xloc>528</xloc>
+      <yloc>240</yloc>
       <attributes_hac/>
     </action>
     <action>
@@ -156,12 +151,11 @@ DROP TABLE IF EXISTS [easyrental_stg].[reservations];</sql>
       <connection>az-sql-server</connection>
       <sendOneStatement>N</sendOneStatement>
       <sql>CREATE SCHEMA easyrental_stg;</sql>
-      <sqlfilename/>
       <sqlfromfile>N</sqlfromfile>
       <useVariableSubstitution>N</useVariableSubstitution>
       <parallel>N</parallel>
-      <xloc>464</xloc>
-      <yloc>160</yloc>
+      <xloc>672</xloc>
+      <yloc>240</yloc>
       <attributes_hac/>
     </action>
     <action>
@@ -171,13 +165,12 @@ DROP TABLE IF EXISTS [easyrental_stg].[reservations];</sql>
       <attributes/>
       <connection>az-sql-server</connection>
       <sendOneStatement>N</sendOneStatement>
-      <sql/>
       <sqlfilename>/files/projects/Create_tables/create_easyrental_stg.sql</sqlfilename>
       <sqlfromfile>Y</sqlfromfile>
       <useVariableSubstitution>N</useVariableSubstitution>
       <parallel>N</parallel>
-      <xloc>608</xloc>
-      <yloc>160</yloc>
+      <xloc>816</xloc>
+      <yloc>240</yloc>
       <attributes_hac/>
     </action>
     <action>
@@ -189,12 +182,11 @@ DROP TABLE IF EXISTS [easyrental_stg].[reservations];</sql>
       <sendOneStatement>N</sendOneStatement>
       <sql>DROP SCHEMA IF EXISTS easyrental_source;
 </sql>
-      <sqlfilename/>
       <sqlfromfile>N</sqlfromfile>
       <useVariableSubstitution>N</useVariableSubstitution>
       <parallel>N</parallel>
-      <xloc>320</xloc>
-      <yloc>368</yloc>
+      <xloc>528</xloc>
+      <yloc>448</yloc>
       <attributes_hac/>
     </action>
     <action>
@@ -209,12 +201,11 @@ DROP TABLE IF EXISTS [easyrental_dwh].[dim_customers];
 DROP TABLE IF EXISTS [easyrental_dwh].[dim_cars];
 DROP TABLE IF EXISTS [easyrental_dwh].[dim_branches];
 DROP TABLE IF EXISTS [easyrental_dwh].[dim_dates];</sql>
-      <sqlfilename/>
       <sqlfromfile>N</sqlfromfile>
       <useVariableSubstitution>N</useVariableSubstitution>
       <parallel>N</parallel>
-      <xloc>176</xloc>
-      <yloc>272</yloc>
+      <xloc>384</xloc>
+      <yloc>352</yloc>
       <attributes_hac/>
     </action>
     <action>
@@ -226,12 +217,11 @@ DROP TABLE IF EXISTS [easyrental_dwh].[dim_dates];</sql>
       <sendOneStatement>N</sendOneStatement>
       <sql>DROP SCHEMA IF EXISTS easyrental_dwh;
 </sql>
-      <sqlfilename/>
       <sqlfromfile>N</sqlfromfile>
       <useVariableSubstitution>N</useVariableSubstitution>
       <parallel>N</parallel>
-      <xloc>320</xloc>
-      <yloc>272</yloc>
+      <xloc>528</xloc>
+      <yloc>352</yloc>
       <attributes_hac/>
     </action>
     <action>
@@ -242,12 +232,11 @@ DROP TABLE IF EXISTS [easyrental_dwh].[dim_dates];</sql>
       <connection>az-sql-server</connection>
       <sendOneStatement>N</sendOneStatement>
       <sql>CREATE SCHEMA easyrental_dwh;</sql>
-      <sqlfilename/>
       <sqlfromfile>N</sqlfromfile>
       <useVariableSubstitution>N</useVariableSubstitution>
       <parallel>N</parallel>
-      <xloc>464</xloc>
-      <yloc>272</yloc>
+      <xloc>672</xloc>
+      <yloc>352</yloc>
       <attributes_hac/>
     </action>
     <action>
@@ -257,13 +246,12 @@ DROP TABLE IF EXISTS [easyrental_dwh].[dim_dates];</sql>
       <attributes/>
       <connection>az-sql-server</connection>
       <sendOneStatement>N</sendOneStatement>
-      <sql/>
       <sqlfilename>/files/projects/Create_tables/create_easyrental_dim_fact_table.sql</sqlfilename>
       <sqlfromfile>Y</sqlfromfile>
       <useVariableSubstitution>N</useVariableSubstitution>
       <parallel>N</parallel>
-      <xloc>608</xloc>
-      <yloc>272</yloc>
+      <xloc>816</xloc>
+      <yloc>352</yloc>
       <attributes_hac/>
     </action>
   </actions>
