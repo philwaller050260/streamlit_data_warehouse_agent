@@ -27,7 +27,7 @@
       <schedulerType>0</schedulerType>
       <weekDay>1</weekDay>
       <parallel>N</parallel>
-      <xloc>224</xloc>
+      <xloc>112</xloc>
       <yloc>352</yloc>
       <attributes_hac/>
     </action>
@@ -254,6 +254,39 @@ DROP TABLE IF EXISTS [easyrental_dwh].[dim_dates];</sql>
       <yloc>352</yloc>
       <attributes_hac/>
     </action>
+    <action>
+      <name>Success</name>
+      <description/>
+      <type>SUCCESS</type>
+      <attributes/>
+      <parallel>N</parallel>
+      <xloc>1120</xloc>
+      <yloc>288</yloc>
+      <attributes_hac/>
+    </action>
+    <action>
+      <name>Wait for SQL</name>
+      <description/>
+      <type>WAIT_FOR_SQL</type>
+      <attributes/>
+      <add_rows_result>N</add_rows_result>
+      <check_cycle_time>60</check_cycle_time>
+      <clear_result_rows>Y</clear_result_rows>
+      <connection>az-sql-server</connection>
+      <custom_sql>select * from sys.databases</custom_sql>
+      <is_custom_sql>Y</is_custom_sql>
+      <is_usevars>N</is_usevars>
+      <maximum_timeout>0</maximum_timeout>
+      <rows_count_value>0</rows_count_value>
+      <schemaname/>
+      <success_condition>rows_count_greater</success_condition>
+      <success_on_timeout>N</success_on_timeout>
+      <tablename/>
+      <parallel>N</parallel>
+      <xloc>224</xloc>
+      <yloc>352</yloc>
+      <attributes_hac/>
+    </action>
   </actions>
   <hops>
     <hop>
@@ -264,25 +297,11 @@ DROP TABLE IF EXISTS [easyrental_dwh].[dim_dates];</sql>
       <unconditional>N</unconditional>
     </hop>
     <hop>
-      <from>Start</from>
-      <to>Drop source tables</to>
-      <enabled>Y</enabled>
-      <evaluation>Y</evaluation>
-      <unconditional>Y</unconditional>
-    </hop>
-    <hop>
       <from>Create easyrental source tables</from>
       <to>Write csv data to tables</to>
       <enabled>Y</enabled>
       <evaluation>Y</evaluation>
       <unconditional>N</unconditional>
-    </hop>
-    <hop>
-      <from>Start</from>
-      <to>Drop stg tables</to>
-      <enabled>Y</enabled>
-      <evaluation>Y</evaluation>
-      <unconditional>Y</unconditional>
     </hop>
     <hop>
       <from>Drop stg tables</from>
@@ -320,13 +339,6 @@ DROP TABLE IF EXISTS [easyrental_dwh].[dim_dates];</sql>
       <unconditional>N</unconditional>
     </hop>
     <hop>
-      <from>Start</from>
-      <to>Drop dwh tables</to>
-      <enabled>Y</enabled>
-      <evaluation>Y</evaluation>
-      <unconditional>Y</unconditional>
-    </hop>
-    <hop>
       <from>Drop dwh tables</from>
       <to>Drop schema dwh</to>
       <enabled>Y</enabled>
@@ -343,6 +355,55 @@ DROP TABLE IF EXISTS [easyrental_dwh].[dim_dates];</sql>
     <hop>
       <from>Create schema dwh</from>
       <to>Create easyrental dwh tables</to>
+      <enabled>Y</enabled>
+      <evaluation>Y</evaluation>
+      <unconditional>N</unconditional>
+    </hop>
+    <hop>
+      <from>Write csv data to tables</from>
+      <to>Success</to>
+      <enabled>Y</enabled>
+      <evaluation>Y</evaluation>
+      <unconditional>N</unconditional>
+    </hop>
+    <hop>
+      <from>Create easyrental dwh tables</from>
+      <to>Success</to>
+      <enabled>Y</enabled>
+      <evaluation>Y</evaluation>
+      <unconditional>N</unconditional>
+    </hop>
+    <hop>
+      <from>Create easyrental stg tables</from>
+      <to>Success</to>
+      <enabled>Y</enabled>
+      <evaluation>Y</evaluation>
+      <unconditional>N</unconditional>
+    </hop>
+    <hop>
+      <from>Start</from>
+      <to>Wait for SQL</to>
+      <enabled>Y</enabled>
+      <evaluation>Y</evaluation>
+      <unconditional>Y</unconditional>
+    </hop>
+    <hop>
+      <from>Wait for SQL</from>
+      <to>Drop stg tables</to>
+      <enabled>Y</enabled>
+      <evaluation>Y</evaluation>
+      <unconditional>N</unconditional>
+    </hop>
+    <hop>
+      <from>Wait for SQL</from>
+      <to>Drop source tables</to>
+      <enabled>Y</enabled>
+      <evaluation>Y</evaluation>
+      <unconditional>N</unconditional>
+    </hop>
+    <hop>
+      <from>Wait for SQL</from>
+      <to>Drop dwh tables</to>
       <enabled>Y</enabled>
       <evaluation>Y</evaluation>
       <unconditional>N</unconditional>
