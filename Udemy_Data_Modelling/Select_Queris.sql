@@ -69,7 +69,7 @@
 -- LEFT JOIN [easyrental_stg].[car_categories] d ON d.id = c.category_id
 
 
-with CTE AS 
+with cte AS 
 (
 SELECT 
   a.*,
@@ -85,6 +85,6 @@ INSERT INTO [easyrental_dwh].[fact_reservations]
 select 
 cte.*,
 cte.total_days * cte.daily_rate as total_amount 
-from CTE 
+from cte 
 
 
