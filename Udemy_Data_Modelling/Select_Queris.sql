@@ -41,6 +41,50 @@
 -- where model = 'Honda Civic' and [year] = 2017
 -- GROUP BY model, year 
 
- select * from [easyrental_stg].[cars]
- where model = 'Honda Civic' and year = 2017
+--  select * from [easyrental_stg].[cars]
+--  where model = 'Honda Civic' and year = 2017
+
+
+-- select top 1 * from  [easyrental_stg].[car_categories] where id = 5
+-- select top 1 * from [easyrental_stg].[cars] where category_id = 5
+
+-- select 
+-- license_plate,model,id
+-- from [easyrental_stg].[cars] 
+-- where category_id IN (
+--     select id from [easyrental_stg].[car_categories]
+--     where id = 5
+-- )
+
+
+-- SELECT 
+--   a.*,
+--   b.payment_method,
+--   d.daily_rate,
+--   DATEDIFF(day, a.start_date, a.end_date) AS total_days,
+--   total_days * d.daily_rate as total_amount 
+-- FROM [easyrental_source].[reservations] a   
+-- LEFT JOIN [easyrental_source].[payments] b ON a.id = b.reservation_id  
+-- LEFT JOIN [easyrental_stg].[cars] c ON c.id = a.car_id
+-- LEFT JOIN [easyrental_stg].[car_categories] d ON d.id = c.category_id
+
+
+with CTE AS 
+(
+SELECT 
+  a.*,
+  b.payment_method,
+  d.daily_rate,
+  DATEDIFF(day, a.start_date, a.end_date) AS total_days
+FROM [easyrental_source].[reservations] a   
+LEFT JOIN [easyrental_source].[payments] b ON a.id = b.reservation_id  
+LEFT JOIN [easyrental_stg].[cars] c ON c.id = a.car_id
+LEFT JOIN [easyrental_stg].[car_categories] d ON d.id = c.category_id
+) 
+INSERT INTO [easyrental_dwh].[fact_reservations]
+select 
+cte.*,
+cte.total_days * cte.daily_rate as total_amount 
+from CTE 
+
 
