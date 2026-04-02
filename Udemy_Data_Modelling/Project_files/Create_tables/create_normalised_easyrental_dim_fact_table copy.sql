@@ -1,4 +1,4 @@
-CREATE TABLE [easyrental_dwh].[fact_reservations] (
+CREATE TABLE [n_easyrental_dwh].[fact_reservations] (
   [id] int PRIMARY KEY IDENTITY(1, 1),
   [customer_id] int,
   [car_id] int,
@@ -13,7 +13,7 @@ CREATE TABLE [easyrental_dwh].[fact_reservations] (
 )
 
 
-CREATE TABLE [easyrental_dwh].[dim_customers] (
+CREATE TABLE [n_easyrental_dwh].[dim_customers] (
   [id] int PRIMARY KEY IDENTITY(1, 1),
   [name] nvarchar(255),
   [email] nvarchar(255),
@@ -23,16 +23,16 @@ CREATE TABLE [easyrental_dwh].[dim_customers] (
 )
 
 
-CREATE TABLE [easyrental_dwh].[dim_cars] (
+CREATE TABLE [n_easyrental_dwh].[dim_cars] (
   [id] int PRIMARY KEY IDENTITY(1, 1),
   [license_plate] nvarchar(255),
   [model] nvarchar(255),
   [year] int,
-  [category] nvarchar(255)
+  [category_name] nvarchar(255)
 )
 
 
-CREATE TABLE [easyrental_dwh].[dim_branches] (
+CREATE TABLE [n_easyrental_dwh].[dim_branches] (
   [id] int PRIMARY KEY IDENTITY(1, 1),
   [name] nvarchar(255),
   [city] nvarchar(255),
@@ -40,7 +40,7 @@ CREATE TABLE [easyrental_dwh].[dim_branches] (
 )
 
 
-CREATE TABLE [easyrental_dwh].[dim_dates] (
+CREATE TABLE [n_easyrental_dwh].[dim_dates] (
   [id] int PRIMARY KEY IDENTITY(1, 1),
   [date] date,
   [year] int,

@@ -57,34 +57,99 @@
 -- )
 
 
+-- cars dim
+-- TRUNCATE TABLE [easyrental_dwh].[dim_cars]
+-- INSERT INTO [easyrental_dwh].[dim_cars]
 -- SELECT 
---   a.*,
---   b.payment_method,
---   d.daily_rate,
---   DATEDIFF(day, a.start_date, a.end_date) AS total_days,
---   total_days * d.daily_rate as total_amount 
--- FROM [easyrental_source].[reservations] a   
--- LEFT JOIN [easyrental_source].[payments] b ON a.id = b.reservation_id  
--- LEFT JOIN [easyrental_stg].[cars] c ON c.id = a.car_id
--- LEFT JOIN [easyrental_stg].[car_categories] d ON d.id = c.category_id
+--        a.license_plate,
+--        a.model,
+--        a.year,
+--        b.name AS category_name
+-- FROM [easyrental_stg].[cars] a
+-- LEFT OUTER JOIN [easyrental_stg].[car_categories] b ON a.category_id = b.id
 
 
-with cte AS 
+
+-- # denormalised fact_reservations
+
+-- WITH cte AS 
+-- (
+--   SELECT 
+--     a.customer_id,
+--     a.car_id,
+--     a.pickup_branch_id,
+--     a.return_branch_id,
+--     a.start_date,
+--     a.end_date,
+--     a.booking_date,
+--     b.payment_method,
+--     d.daily_rate,
+--     DATEDIFF(day, a.start_date, a.end_date) AS total_days
+--   FROM [easyrental_source].[reservations] a   
+--   LEFT JOIN [easyrental_source].[payments] b ON a.id = b.reservation_id  
+--   LEFT JOIN [easyrental_stg].[cars] c ON c.id = a.car_id
+--   LEFT JOIN [easyrental_stg].[car_categories] d ON d.id = c.category_id
+-- )
+-- INSERT INTO [d_easyrental_dwh].[fact_reservations]
+-- SELECT 
+--   customer_id,
+--   car_id,
+--   pickup_branch_id,
+--   return_branch_id,
+--   start_date,
+--   end_date,
+--   booking_date,
+--   payment_method,
+--   total_days,
+--   total_days * daily_rate AS total_amount
+-- FROM cte
+
+
+-- # normalised fact dimensions
+
+WITH reservation_data AS 
 (
+  SELECT 
+    a.id,
+    a.customer_id,
+    a.car_id,
+    a.pickup_branch_id,
+    a.return_branch_id,
+    a.start_date,
+    a.end_date,
+    a.booking_date,
+    b.payment_method,
+    d.daily_rate,
+    DATEDIFF(day, a.start_date, a.end_date) AS total_days
+  FROM [easyrental_source].[reservations] a   
+  LEFT JOIN [easyrental_source].[payments] b ON a.id = b.reservation_id  
+  LEFT JOIN [easyrental_stg].[cars] c ON c.id = a.car_id
+  LEFT JOIN [easyrental_stg].[car_categories] d ON d.id = c.category_id
+),
+dates_mapped AS
+(
+  SELECT 
+    rd.*,
+    d1.id AS start_date_id,
+    d2.id AS end_date_id,
+    d3.id AS booking_date_id,
+    rd.total_days * rd.daily_rate AS total_amount
+  FROM reservation_data rd
+  LEFT JOIN [n_easyrental_dwh].[dim_dates] d1 ON rd.start_date = d1.date
+  LEFT JOIN [n_easyrental_dwh].[dim_dates] d2 ON rd.end_date = d2.date
+  LEFT JOIN [n_easyrental_dwh].[dim_dates] d3 ON rd.booking_date = d3.date
+)
+INSERT INTO [n_easyrental_dwh].[fact_reservations]
 SELECT 
-  a.*,
-  b.payment_method,
-  d.daily_rate,
-  DATEDIFF(day, a.start_date, a.end_date) AS total_days
-FROM [easyrental_source].[reservations] a   
-LEFT JOIN [easyrental_source].[payments] b ON a.id = b.reservation_id  
-LEFT JOIN [easyrental_stg].[cars] c ON c.id = a.car_id
-LEFT JOIN [easyrental_stg].[car_categories] d ON d.id = c.category_id
-) 
-INSERT INTO [easyrental_dwh].[fact_reservations]
-select 
-cte.*,
-cte.total_days * cte.daily_rate as total_amount 
-from cte 
-
-
+  id,
+  customer_id,
+  car_id,
+  pickup_branch_id,
+  return_branch_id,
+  start_date_id,
+  end_date_id,
+  booking_date_id,
+  payment_method,
+  total_days,
+  total_amount
+FROM dates_mapped

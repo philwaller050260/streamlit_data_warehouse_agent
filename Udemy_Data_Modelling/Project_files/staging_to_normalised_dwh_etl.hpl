@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <pipeline>
   <info>
-    <name>staging_to_dwh_etl</name>
+    <name>staging_to_normalised_dwh_etl</name>
     <name_sync_with_filename>Y</name_sync_with_filename>
     <description/>
     <extended_description/>
@@ -56,7 +56,7 @@ SELECT name, city, capacity FROM [easyrental_stg].[branches]
     <attributes/>
     <GUI>
       <xloc>608</xloc>
-      <yloc>192</yloc>
+      <yloc>208</yloc>
     </GUI>
   </transform>
   <transform>
@@ -83,8 +83,8 @@ INSERT INTO [easyrental_dwh].[dim_customers] (name, email, date_of_birth, phone,
 SELECT name, email, date_of_birth, phone, driver_license_number FROM [easyrental_stg].[customers];</sql>
     <attributes/>
     <GUI>
-      <xloc>240</xloc>
-      <yloc>176</yloc>
+      <xloc>224</xloc>
+      <yloc>208</yloc>
     </GUI>
   </transform>
   <transform>
@@ -111,7 +111,7 @@ SELECT name, email, date_of_birth, phone, driver_license_number FROM [easyrental
     <attributes/>
     <GUI>
       <xloc>224</xloc>
-      <yloc>336</yloc>
+      <yloc>432</yloc>
     </GUI>
   </transform>
   <transform_error_handling>
