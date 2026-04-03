@@ -32,13 +32,19 @@ CREATE TABLE [d_easyrental_dwh].[dim_cars] (
 )
 
 
-CREATE TABLE [d_easyrental_dwh].[dim_branches] (
+CREATE TABLE [d_easyrental_dwh].[dim_pickup_branches] (
   [id] int PRIMARY KEY IDENTITY(1, 1),
   [name] nvarchar(255),
   [city] nvarchar(255),
   [capacity] int
 )
 
+CREATE TABLE [d_easyrental_dwh].[dim_return_branches] (
+  [id] int PRIMARY KEY IDENTITY(1, 1),
+  [name] nvarchar(255),
+  [city] nvarchar(255),
+  [capacity] int
+)
 
 CREATE TABLE [d_easyrental_dwh].[dim_dates] (
   [id] int PRIMARY KEY IDENTITY(1, 1),

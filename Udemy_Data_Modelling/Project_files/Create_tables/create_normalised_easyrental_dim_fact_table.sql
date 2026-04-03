@@ -32,7 +32,14 @@ CREATE TABLE [n_easyrental_dwh].[dim_cars] (
 )
 
 
-CREATE TABLE [n_easyrental_dwh].[dim_branches] (
+CREATE TABLE [n_easyrental_dwh].[dim_return_branches] (
+  [id] int PRIMARY KEY IDENTITY(1, 1),
+  [name] nvarchar(255),
+  [city] nvarchar(255),
+  [capacity] int
+)
+
+CREATE TABLE [n_easyrental_dwh].[dim_pickup_branches] (
   [id] int PRIMARY KEY IDENTITY(1, 1),
   [name] nvarchar(255),
   [city] nvarchar(255),
@@ -40,7 +47,8 @@ CREATE TABLE [n_easyrental_dwh].[dim_branches] (
 )
 
 
-CREATE TABLE [n_easyrental_dwh].[dim_dates] (
+
+CREATE TABLE [n_easyrental_dwh].[dim_start_dates] (
   [id] int PRIMARY KEY IDENTITY(1, 1),
   [date] date,
   [year] int,
@@ -49,6 +57,28 @@ CREATE TABLE [n_easyrental_dwh].[dim_dates] (
   [day] int,
   [weekday] nvarchar(255)
 )
+
+CREATE TABLE [n_easyrental_dwh].[dim_end_dates] (
+  [id] int PRIMARY KEY IDENTITY(1, 1),
+  [date] date,
+  [year] int,
+  [quarter] int,
+  [month] int,
+  [day] int,
+  [weekday] nvarchar(255)
+)
+
+
+CREATE TABLE [n_easyrental_dwh].[dim_booking_dates] (
+  [id] int PRIMARY KEY IDENTITY(1, 1),
+  [date] date,
+  [year] int,
+  [quarter] int,
+  [month] int,
+  [day] int,
+  [weekday] nvarchar(255)
+)
+
 
 
 -- ALTER TABLE [fact_reservations] ADD FOREIGN KEY ([customer_id]) REFERENCES [dim_customers] ([id])

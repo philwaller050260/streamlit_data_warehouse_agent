@@ -36,23 +36,28 @@
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>Script</from>
-      <to>Create normalised dwh dim dates</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>Create normalised dwh dim dates</from>
-      <to>insert into dwh customers from staging customers</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
       <from>insert into dwh branches from staging branches</from>
       <to>insert into n_easyrental_dwh fact_rservations from staging_reservations</to>
       <enabled>Y</enabled>
     </hop>
+    <hop>
+      <from>Insert Dates into start date dim</from>
+      <to>insert into dwh customers from staging customers</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Insert Dates into end date dim</from>
+      <to>insert into dwh customers from staging customers</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Insert Dates into booking date dim</from>
+      <to>insert into dwh customers from staging customers</to>
+      <enabled>Y</enabled>
+    </hop>
   </order>
   <transform>
-    <name>Create normalised dwh dim dates</name>
+    <name>Insert Dates into booking date dim</name>
     <type>ExecSql</type>
     <description/>
     <distribute>Y</distribute>
@@ -65,16 +70,17 @@
     <arguments>
 </arguments>
     <connection>az-sql-server</connection>
+    <delete_field/>
     <execute_each_row>N</execute_each_row>
+    <insert_field/>
     <quoteString>N</quoteString>
+    <read_field/>
     <replace_variables>N</replace_variables>
     <set_params>N</set_params>
-    <single_statement>N</single_statement>
-    <sql>TRUNCATE TABLE [n_easyrental_dwh].[dim_dates]
-
+    <single_statement>Y</single_statement>
+    <sql>TRUNCATE TABLE [n_easyrental_dwh].[dim_booking_dates]
 DECLARE @StartDate DATE = '2020-01-01'
 DECLARE @EndDate DATE = '2026-12-31'
-
 ;WITH DateSequence AS (
   SELECT @StartDate AS [date]
   UNION ALL
@@ -82,7 +88,7 @@ DECLARE @EndDate DATE = '2026-12-31'
   FROM DateSequence
   WHERE DATEADD(day, 1, [date]) &lt;= @EndDate
 )
-INSERT INTO [n_easyrental_dwh].[dim_dates] (date, year, quarter, month, day, weekday)
+INSERT INTO [n_easyrental_dwh].[dim_booking_dates] (date, year, quarter, month, day, weekday)
 SELECT 
   [date],
   YEAR([date]) AS year,
@@ -92,15 +98,16 @@ SELECT
   FORMAT([date], 'dddd') AS weekday
 FROM DateSequence
 OPTION (MAXRECURSION 0)</sql>
+    <update_field/>
     <attributes/>
     <GUI>
-      <xloc>176</xloc>
-      <yloc>352</yloc>
+      <xloc>240</xloc>
+      <yloc>464</yloc>
     </GUI>
   </transform>
   <transform>
-    <name>Script</name>
-    <type>SuperScript</type>
+    <name>Insert Dates into end date dim</name>
+    <type>ExecSql</type>
     <description/>
     <distribute>Y</distribute>
     <custom_distribution/>
@@ -109,20 +116,91 @@ OPTION (MAXRECURSION 0)</sql>
       <method>none</method>
       <schema_name/>
     </partitioning>
-    <fields>
-</fields>
-    <scriptLanguage>python</scriptLanguage>
-    <scripts>
-      <script>
-        <scriptBody>print("hello")</scriptBody>
-        <scriptName>script1</scriptName>
-        <scriptType>0</scriptType>
-      </script>
-    </scripts>
+    <arguments>
+</arguments>
+    <connection>az-sql-server</connection>
+    <delete_field/>
+    <execute_each_row>N</execute_each_row>
+    <insert_field/>
+    <quoteString>N</quoteString>
+    <read_field/>
+    <replace_variables>N</replace_variables>
+    <set_params>N</set_params>
+    <single_statement>Y</single_statement>
+    <sql>TRUNCATE TABLE [n_easyrental_dwh].[dim_end_dates]
+DECLARE @StartDate DATE = '2020-01-01'
+DECLARE @EndDate DATE = '2026-12-31'
+;WITH DateSequence AS (
+  SELECT @StartDate AS [date]
+  UNION ALL
+  SELECT DATEADD(day, 1, [date])
+  FROM DateSequence
+  WHERE DATEADD(day, 1, [date]) &lt;= @EndDate
+)
+INSERT INTO [n_easyrental_dwh].[dim_end_dates] (date, year, quarter, month, day, weekday)
+SELECT 
+  [date],
+  YEAR([date]) AS year,
+  DATEPART(quarter, [date]) AS quarter,
+  MONTH([date]) AS month,
+  DAY([date]) AS day,
+  FORMAT([date], 'dddd') AS weekday
+FROM DateSequence
+OPTION (MAXRECURSION 0)</sql>
+    <update_field/>
     <attributes/>
     <GUI>
       <xloc>176</xloc>
-      <yloc>464</yloc>
+      <yloc>64</yloc>
+    </GUI>
+  </transform>
+  <transform>
+    <name>Insert Dates into start date dim</name>
+    <type>ExecSql</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <arguments>
+</arguments>
+    <connection>az-sql-server</connection>
+    <delete_field/>
+    <execute_each_row>N</execute_each_row>
+    <insert_field/>
+    <quoteString>N</quoteString>
+    <read_field/>
+    <replace_variables>N</replace_variables>
+    <set_params>N</set_params>
+    <single_statement>Y</single_statement>
+    <sql>TRUNCATE TABLE [n_easyrental_dwh].[dim_start_dates]
+DECLARE @StartDate DATE = '2020-01-01'
+DECLARE @EndDate DATE = '2026-12-31'
+;WITH DateSequence AS (
+  SELECT @StartDate AS [date]
+  UNION ALL
+  SELECT DATEADD(day, 1, [date])
+  FROM DateSequence
+  WHERE DATEADD(day, 1, [date]) &lt;= @EndDate
+)
+INSERT INTO [n_easyrental_dwh].[dim_start_dates] (date, year, quarter, month, day, weekday)
+SELECT 
+  [date],
+  YEAR([date]) AS year,
+  DATEPART(quarter, [date]) AS quarter,
+  MONTH([date]) AS month,
+  DAY([date]) AS day,
+  FORMAT([date], 'dddd') AS weekday
+FROM DateSequence
+OPTION (MAXRECURSION 0)</sql>
+    <update_field/>
+    <attributes/>
+    <GUI>
+      <xloc>144</xloc>
+      <yloc>304</yloc>
     </GUI>
   </transform>
   <transform>
@@ -178,8 +256,8 @@ FROM cte
 </sql>
     <attributes/>
     <GUI>
-      <xloc>960</xloc>
-      <yloc>48</yloc>
+      <xloc>1040</xloc>
+      <yloc>32</yloc>
     </GUI>
   </transform>
   <transform>
@@ -196,25 +274,37 @@ FROM cte
     <arguments>
 </arguments>
     <connection>az-sql-server</connection>
+    <delete_field/>
     <execute_each_row>N</execute_each_row>
+    <insert_field/>
     <quoteString>N</quoteString>
+    <read_field/>
     <replace_variables>N</replace_variables>
     <set_params>N</set_params>
     <single_statement>N</single_statement>
     <sql>-- denormalised
 
-TRUNCATE TABLE [d_easyrental_dwh].[dim_branches]
-INSERT INTO [d_easyrental_dwh].[dim_branches] (name, city, capacity)
+TRUNCATE TABLE [d_easyrental_dwh].[dim_pickup_branches]
+INSERT INTO [d_easyrental_dwh].[dim_pickup_branches] (name, city, capacity)
+SELECT name, city, capacity FROM [easyrental_stg].[branches]
+
+TRUNCATE TABLE [d_easyrental_dwh].[dim_return_branches]
+INSERT INTO [d_easyrental_dwh].[dim_return_branches] (name, city, capacity)
 SELECT name, city, capacity FROM [easyrental_stg].[branches]
 
 -- normalised 
 
-TRUNCATE TABLE [n_easyrental_dwh].[dim_branches]
-INSERT INTO [n_easyrental_dwh].[dim_branches] (name, city, capacity)
+TRUNCATE TABLE [n_easyrental_dwh].[dim_pickup_branches]
+INSERT INTO [n_easyrental_dwh].[dim_pickup_branches] (name, city, capacity)
+SELECT name, city, capacity FROM [easyrental_stg].[branches]
+
+TRUNCATE TABLE [n_easyrental_dwh].[dim_return_branches]
+INSERT INTO [n_easyrental_dwh].[dim_return_branches] (name, city, capacity)
 SELECT name, city, capacity FROM [easyrental_stg].[branches]</sql>
+    <update_field/>
     <attributes/>
     <GUI>
-      <xloc>704</xloc>
+      <xloc>800</xloc>
       <yloc>208</yloc>
     </GUI>
   </transform>
@@ -268,8 +358,8 @@ LEFT OUTER JOIN [easyrental_stg].[car_categories] b ON a.category_id = b.id
 </sql>
     <attributes/>
     <GUI>
-      <xloc>752</xloc>
-      <yloc>480</yloc>
+      <xloc>816</xloc>
+      <yloc>496</yloc>
     </GUI>
   </transform>
   <transform>
@@ -305,7 +395,7 @@ INSERT INTO [d_easyrental_dwh].[dim_customers] (name, email, date_of_birth, phon
 SELECT name, email, date_of_birth, phone, driver_license_number FROM [easyrental_stg].[customers];</sql>
     <attributes/>
     <GUI>
-      <xloc>336</xloc>
+      <xloc>400</xloc>
       <yloc>208</yloc>
     </GUI>
   </transform>
@@ -330,11 +420,12 @@ SELECT name, email, date_of_birth, phone, driver_license_number FROM [easyrental
     <read_field/>
     <replace_variables>N</replace_variables>
     <set_params>N</set_params>
-    <single_statement>N</single_statement>
-    <sql>WITH reservation_data AS 
+    <single_statement>Y</single_statement>
+    <sql>TRUNCATE TABLE [n_easyrental_dwh].[fact_reservations];
+
+WITH reservation_data AS 
 (
   SELECT 
-    a.id,
     a.customer_id,
     a.car_id,
     a.pickup_branch_id,
@@ -353,19 +444,28 @@ SELECT name, email, date_of_birth, phone, driver_license_number FROM [easyrental
 dates_mapped AS
 (
   SELECT 
-    rd.*,
+    rd.customer_id,
+    rd.car_id,
+    rd.pickup_branch_id,
+    rd.return_branch_id,
+    rd.start_date,
+    rd.end_date,
+    rd.booking_date,
+    rd.payment_method,
+    rd.total_days,
+    rd.daily_rate,
     d1.id AS start_date_id,
     d2.id AS end_date_id,
     d3.id AS booking_date_id,
     rd.total_days * rd.daily_rate AS total_amount
   FROM reservation_data rd
-  LEFT JOIN [n_easyrental_dwh].[dim_dates] d1 ON rd.start_date = d1.date
-  LEFT JOIN [n_easyrental_dwh].[dim_dates] d2 ON rd.end_date = d2.date
-  LEFT JOIN [n_easyrental_dwh].[dim_dates] d3 ON rd.booking_date = d3.date
+  LEFT JOIN [n_easyrental_dwh].[dim_start_dates] d1 ON rd.start_date = d1.date
+  LEFT JOIN [n_easyrental_dwh].[dim_end_dates] d2 ON rd.end_date = d2.date
+  LEFT JOIN [n_easyrental_dwh].[dim_booking_dates] d3 ON rd.booking_date = d3.date
 )
 INSERT INTO [n_easyrental_dwh].[fact_reservations]
+(customer_id, car_id, pickup_branch_id, return_branch_id, start_date_id, end_date_id, booking_date_id, payment_method, total_days, total_amount)
 SELECT 
-  id,
   customer_id,
   car_id,
   pickup_branch_id,
@@ -376,12 +476,12 @@ SELECT
   payment_method,
   total_days,
   total_amount
-FROM dates_mapped</sql>
+FROM dates_mapped;</sql>
     <update_field/>
     <attributes/>
     <GUI>
-      <xloc>1024</xloc>
-      <yloc>272</yloc>
+      <xloc>1072</xloc>
+      <yloc>320</yloc>
     </GUI>
   </transform>
   <transform_error_handling>

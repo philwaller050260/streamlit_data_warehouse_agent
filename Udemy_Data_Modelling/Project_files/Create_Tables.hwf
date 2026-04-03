@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <workflow>
-  <name>create_tables_wf</name>
+  <name>Create_Tables</name>
   <name_sync_with_filename>Y</name_sync_with_filename>
   <description/>
   <extended_description/>
@@ -173,10 +173,8 @@ DROP TABLE IF EXISTS [easyrental_stg].[reservations];</sql>
       <sql>DROP TABLE IF EXISTS [d_easyrental_dwh].[fact_reservations];
 DROP TABLE IF EXISTS [d_easyrental_dwh].[dim_customers];
 DROP TABLE IF EXISTS [d_easyrental_dwh].[dim_cars];
-DROP TABLE IF EXISTS [d_easyrental_dwh].[dim_pickup_branches];
-DROP TABLE IF EXISTS [d_easyrental_dwh].[dim_return_branches];
+DROP TABLE IF EXISTS [d_easyrental_dwh].[dim_branches];
 DROP TABLE IF EXISTS [d_easyrental_dwh].[dim_dates];</sql>
-      <sqlfilename/>
       <sqlfromfile>N</sqlfromfile>
       <useVariableSubstitution>N</useVariableSubstitution>
       <parallel>N</parallel>
@@ -258,8 +256,7 @@ DROP TABLE IF EXISTS [d_easyrental_dwh].[dim_dates];</sql>
       <attributes/>
       <connection>az-sql-server</connection>
       <sendOneStatement>N</sendOneStatement>
-      <sql/>
-      <sqlfilename>/files/projects/Create_tables/create_normalised_easyrental_dim_fact_table.sql</sqlfilename>
+      <sqlfilename>/files/projects/Create_tables/create_normalised_easyrental_dim_fact_table copy.sql</sqlfilename>
       <sqlfromfile>Y</sqlfromfile>
       <useVariableSubstitution>N</useVariableSubstitution>
       <parallel>N</parallel>
@@ -277,18 +274,12 @@ DROP TABLE IF EXISTS [d_easyrental_dwh].[dim_dates];</sql>
       <sql>DROP TABLE IF EXISTS [n_easyrental_dwh].[fact_reservations];
 DROP TABLE IF EXISTS [n_easyrental_dwh].[dim_customers];
 DROP TABLE IF EXISTS [n_easyrental_dwh].[dim_cars];
-DROP TABLE IF EXISTS [n_easyrental_dwh].[dim_pickup_branches];
-DROP TABLE IF EXISTS [n_easyrental_dwh].[dim_return_branches];
-DROP TABLE IF EXISTS [n_easyrental_dwh].[dim_start_dates];
-DROP TABLE IF EXISTS [n_easyrental_dwh].[dim_end_dates];
-DROP TABLE IF EXISTS [n_easyrental_dwh].[dim_booking_dates];
-
-</sql>
-      <sqlfilename/>
+DROP TABLE IF EXISTS [n_easyrental_dwh].[dim_branches];
+DROP TABLE IF EXISTS [n_easyrental_dwh].[dim_dates];</sql>
       <sqlfromfile>N</sqlfromfile>
       <useVariableSubstitution>N</useVariableSubstitution>
       <parallel>N</parallel>
-      <xloc>384</xloc>
+      <xloc>400</xloc>
       <yloc>400</yloc>
       <attributes_hac/>
     </action>
