@@ -14,11 +14,13 @@ OPENROUTER_MODELS = {
 
 OPENAI_MODELS = {
     "GPT-4o":          "gpt-4o",
+    "gpt-4o-mini":     "gpt-4o-mini",
     "GPT-5.1":         "gpt-5.1",
     "GPT-5.2":         "gpt-5.2",
     "GPT-5.4":         "gpt-5.4",
     "GPT-5.4 Mini":    "gpt-5.4-mini",
     "GPT-5.4 Nano":    "gpt-5.4-nano",
+    
 }
 
 # Clients
