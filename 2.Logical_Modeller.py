@@ -81,6 +81,14 @@ RELATIONSHIPS & CARDINALITY:
 - FactEntity1 → Entity2: [Cardinality]
 ...
 
+RELATIONSHIP VALIDATION:
+- Verify every fact table has at least one FK to a dimension
+- Check for missing dimensions: if a fact has measurement columns (e.g., RestaurantRating, CourierRating), ensure corresponding dimension and FK exists (e.g., Restaurant dimension with RestaurantKey)
+- Validate cardinality makes sense (fact M:1 to dims, not reverse)
+- Identify role-playing dimensions and recommend separate logical entities
+- Flag incomplete relationships: warn if relationships are missing FKs
+- Check that all FKs reference dimensions, not other facts
+
 SPECIAL CONSIDERATIONS:
 - Role-Playing Dimensions: [If any dimension appears in multiple roles (e.g., Branch as both PickupBranch and ReturnBranch, or Date as StartDate/EndDate/BookingDate), create SEPARATE LOGICAL ENTITIES for each role with identical structure but distinct names. This avoids ambiguity in fact table foreign keys. Example: Dim_DateStart, Dim_DateEnd, Dim_DateBooking - all identical structure, different names]
 - Recommended Denormalisation: [Any attributes that should be denormalised from dimensions into facts for query performance]

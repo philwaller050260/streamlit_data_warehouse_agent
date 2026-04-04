@@ -74,6 +74,21 @@ If a dimension has multiple roles (e.g., Branch as PickupBranch and ReturnBranch
 - Identical structure, different names
 - Fact table has separate FKs: PickupBranchKey, ReturnBranchKey
 
+RELATIONSHIP VALIDATION:
+- Every fact table must have FK to all referenced dimensions
+- Review logical model: if measurement/rating columns exist (e.g., RestaurantRating, CourierRating), ensure corresponding FK exists (e.g., RestaurantKey, CourierKey)
+- For role-playing dimensions, create separate FKs with distinct names
+- Check for missing relationships: scan fact table attributes for entity references that need dimension FKs
+- Ensure all FKs reference valid dimension tables
+- Warn if relationships are incomplete — missing FKs must be added before output
+
+OUTPUT:
+- Return ONLY valid SQL Server CREATE TABLE statements
+- No markdown fences, no backticks
+- Dimensions first, fact tables last
+- Include ALL FOREIGN KEY constraints in fact tables
+- No comments
+
 OUTPUT:
 - Return ONLY valid SQL Server CREATE TABLE statements
 - No markdown fences, no backticks

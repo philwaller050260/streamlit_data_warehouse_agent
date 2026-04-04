@@ -39,15 +39,14 @@ def generate_dbml_from_logical_model(client, logical_model: str, model_id: str) 
                 "role": "system",
                 "content": """You are a database architect. Convert a logical data model into DBML format for dbdiagram.io visualization.
 
-Your job is to take the logical model description (entities, attributes, relationships, SCD types) and output valid DBML that can be pasted directly into dbdiagram.io.
+Your job is to take the logical model description (entities, attributes, relationships) and output valid DBML that can be pasted directly into dbdiagram.io.
 
 DBML RULES:
 - Use 'Table EntityName' for each entity
-- Use [pk, increment] for INT IDENTITY surrogate keys
+- Use [pk, increment] for surrogate keys
 - Use [unique] for natural/business keys
 - Use column_name column_type for each attribute
 - Use [ref: > OtherTable.column] for foreign key relationships
-- Use [ref: < OtherTable.column] for reverse relationships
 - Comment tables and relationships with // or /* */
 
 DATA TYPES IN DBML:
@@ -58,30 +57,25 @@ DATA TYPES IN DBML:
 - datetime for DATETIME columns
 - bit for BIT columns
 
-DIMENSION TABLES:
-- Use Dim_EntityName naming
+ENTITY RULES:
+- Use EntityName (no Dim_ or Fact_ prefix - this is logical, not physical)
 - Include surrogate key [pk, increment]
 - Include natural key [unique]
-- For SCD Type 2: include StartDate, EndDate, IsActive columns
-- For SCD Type 1: no history columns needed
-
-FACT TABLES:
-- Use Fact_EntityName naming
-- Include surrogate key [pk, increment]
-- Include all foreign keys to dimension tables
-- Include all measures/metrics columns
-- Include CreatedDate for audit
+- For SCD Type 2: include StartDate, EndDate, IsActive
+- For SCD Type 1: no history columns
+- Include all attributes from logical model
 
 RELATIONSHIPS:
-- Many-to-One (M:1): fact to dimension uses [ref: > Dim_Table.key]
-- One-to-Many (1:N): use [ref: < ]
-- Role-playing dimensions: create separate table entries with different names
+- Represent every relationship from logical model
+- Use [ref: > ] for each relationship
+- Comment cardinality (M:1, 1:N, etc.)
+- Role-playing entities: create separate table entries with distinct names
 
 OUTPUT:
 - Return ONLY valid DBML code
 - No markdown fences, no backticks
-- Ready to paste directly into dbdiagram.io
-- Include comments explaining the model"""
+- Ready to paste into dbdiagram.io
+- Include comments explaining entities and relationships"""
             },
             {
                 "role": "user",
